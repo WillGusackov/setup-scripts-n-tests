@@ -1,7 +1,8 @@
 FROM fedora:latest
 
-# Install sudo
-RUN dnf install -y sudo
+# Install necessary packages including full CA bundle for SSL
+RUN dnf install -y ca-certificates sudo wget openssl && \
+    dnf clean all
 
 # Create a non-root user for testing
 RUN useradd -m -s /bin/bash testuser

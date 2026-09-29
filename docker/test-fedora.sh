@@ -15,7 +15,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Check if installation script exists
-INSTALL_SCRIPT="$PROJECT_ROOT/install/fedora.sh"
+INSTALL_SCRIPT="$PROJECT_ROOT/install/miniconda-fedora.sh"
 if [ ! -f "$INSTALL_SCRIPT" ]; then
     echo "Error: Installation script not found at $INSTALL_SCRIPT"
     exit 1
