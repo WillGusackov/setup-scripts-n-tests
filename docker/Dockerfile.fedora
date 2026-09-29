@@ -1,0 +1,13 @@
+FROM fedora:latest
+
+# Install sudo
+RUN dnf install -y sudo
+
+# Create a non-root user for testing
+RUN useradd -m -s /bin/bash testuser
+RUN echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER testuser
+WORKDIR /home/testuser
+
+CMD ["/bin/bash"]
