@@ -9,25 +9,22 @@ echo "Installing system dependencies..."
 sudo dnf install -y graphviz wget
 
 # Download Miniconda installer
-INSTALLER="Miniconda3-latest-Linux-x86_64.sh"
-URL="https://repo.anaconda.com/miniconda/$INSTALLER"
-
 echo ""
 echo "Downloading Miniconda installer..."
-wget -q --show-progress "$URL" -O "/tmp/$INSTALLER"
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 
 # Run installer
 echo ""
 echo "Running Miniconda installer..."
-bash "/tmp/$INSTALLER" -b -p "$HOME/miniconda3"
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
 
-# Initialize conda for bash
+# Initialize conda
 echo ""
 echo "Initializing conda..."
-"$HOME/miniconda3/bin/conda" init bash
-
-# Source to use conda in this script
-source "$HOME/miniconda3/etc/profile.d/conda.sh"
+source ~/miniconda3/bin/activate
+conda init --all
 
 # Create ai_engineering environment
 echo ""
@@ -67,9 +64,6 @@ conda install -c conda-forge -y pingouin
 echo ""
 echo "Installing dtale (this may take a while)..."
 conda install -c conda-forge -y dtale
-
-# Clean up
-rm "/tmp/$INSTALLER"
 
 # Install VS Code extensions
 echo ""
